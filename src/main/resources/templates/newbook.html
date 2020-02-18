@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Hello world
+
+
+<form th:action="@{/books/saveBook}" method="post" th:object="${newBook}">
+    <input type="text" th:field="*{name}">
+    <input type="text" th:field="*{category}">
+    <input type="text" th:field="*{author}">
+    <select name="authorId">
+        <option th:each="author : ${authors}"
+                th:text="${author.name}"
+                th:value="${author.id}"></option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
