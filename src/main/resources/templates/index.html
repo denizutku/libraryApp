@@ -1,44 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}"
+>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<th:block layout:fragment="content">
 
-Hello world
 
-<table class="table">
-    <tr>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+        </tr>
 
-    <tr th:each="book: ${books}">
-        <td th:text="${book.id}"></td>
-        <td th:text="${book.name}"></td>
-        <td th:text="${book.category}"></td>
-        <td th:text="${book.author.name}"></td>
-    </tr>
-</table>
+        <tr th:each="book: ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.category}"></td>
+            <td th:text="${book.author.name}"></td>
+        </tr>
+    </table>
 
-<table class="table">
-    <tr>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+        </tr>
 
-    <tr th:each="author: ${authors}">
-        <td th:text="${author.id}"></td>
-        <td th:text="${author.name}"></td>
-        <td th:text="${author.genre}"></td>
-        <td th:text="${author.books}"></td>
-    </tr>
-</table>
+        <tr th:each="author: ${authors}">
+            <td th:text="${author.id}"></td>
+            <td th:text="${author.name}"></td>
+            <td th:text="${author.genre}"></td>
+            <td th:text="${author.books}"></td>
+        </tr>
+    </table>
+
+
+</th:block>
 
 </body>
 </html>
