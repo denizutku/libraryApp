@@ -14,7 +14,7 @@ public class Book {
 
     private String category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Author author;
 
     public Long getId() {

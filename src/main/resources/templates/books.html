@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
 
-<table class="table">
-    <tr>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-    </tr>
+    <th:block layout:fragment="content">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-9">
+                    <table class="table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Author's Name</th>
+                            <th>Actions</th>
+                        </tr>
 
-    <tr th:each="book: ${listAllBooks}">
-        <td th:text="${book.id}"></td>
-        <td th:text="${book.name}"></td>
-        <td th:text="${book.category}"></td>
-        <td th:text="${book.author.name}"></td>
-    </tr>
-</table>
+                        <tr th:each="book: ${listAllBooks}">
+                            <td th:text="${book.id}"></td>
+                            <td th:text="${book.name}"></td>
+                            <td th:text="${book.category}"></td>
+                            <td th:text="${book.author.name}"></td>
+                            <td>
+                                <a th:href="@{'/books/' + ${book.id}}">Details</a> <a th:href="@{'/books/deleteBook/' + ${book.id}}">Delete</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </th:block>
 
 </body>
 </html>

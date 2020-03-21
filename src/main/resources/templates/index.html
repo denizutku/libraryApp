@@ -34,11 +34,15 @@
             <th>4</th>
         </tr>
 
-        <tr th:each="author: ${authors}">
+        <tr th:each="author: ${authors}" >
             <td th:text="${author.id}"></td>
             <td th:text="${author.name}"></td>
             <td th:text="${author.genre}"></td>
-            <td th:text="${author.books}"></td>
+            <td>
+                <th:block th:each="book: ${author.books}">
+                    <span th:text="${book.name}"></span>
+                </th:block>
+            </td>
         </tr>
     </table>
 

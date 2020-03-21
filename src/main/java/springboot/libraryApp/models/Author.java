@@ -17,7 +17,7 @@ public class Author {
 
     private String genre;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private List<Book> books = new ArrayList<>();
 

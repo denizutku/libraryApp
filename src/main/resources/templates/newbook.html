@@ -1,25 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
 
-Hello world
+    <th:block layout:fragment="content">
 
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-6">
+                    <form class="text-center border border-light p-5" th:action="@{/books/saveBook}" method="post" th:object="${newBook}">
+                        <p class="h4 mb-4">Create a new book</p>
+                        <input type="text" class="form-control mb-4" placeholder="Name" th:field="*{name}">
+                        <input type="text" class="form-control mb-4" placeholder="Category" th:field="*{category}">
+                        <label>Select Author</label>
+                        <select class="browser-default custom-select mb-4" th:field="*{author}">
+                            <option th:each="author : ${author}"
+                                    th:text="${author.name}"
+                                    th:value="${author.id}"></option>
+                        </select>
+                        <button class="btn btn-info btn-block" type="submit">Create</button>
+                    </form>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
 
-<form th:action="@{/books/saveBook}" method="post" th:object="${newBook}">
-    <input type="text" th:field="*{name}">
-    <input type="text" th:field="*{category}">
-    <input type="text" th:field="*{author}">
-    <select name="authorId">
-        <option th:each="author : ${authors}"
-                th:text="${author.name}"
-                th:value="${author.id}"></option>
-    </select>
-    <button type="submit">Submit</button>
-</form>
+    </th:block>
 
 </body>
 </html>

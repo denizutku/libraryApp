@@ -1,26 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
 
-<table class="table">
-    <tr>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-    </tr>
+    <th:block layout:fragment="content">
 
-    <tr th:each="author: ${listAllAuthors}">
-        <td th:text="${author.id}"></td>
-        <td th:text="${author.name}"></td>
-        <td th:text="${author.genre}"></td>
-        <td th:text="${author.books}"></td>
-    </tr>
-</table>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-9">
+                    <table class="table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Genre</th>
+                            <th>Books</th>
+                            <th>Actions</th>
+                        </tr>
+
+                        <tr th:each="author: ${listAllAuthors}">
+                            <td th:text="${author.id}"></td>
+                            <td th:text="${author.name}"></td>
+                            <td th:text="${author.genre}"></td>
+                            <td>
+                                <th:block th:each="book: ${author.books}">
+                                    <span th:text="${book.name}"></span>
+                                </th:block>
+                            </td>
+                            <td>
+                                <a th:href="@{'/authors/' + ${author.id}}">Details</a> <a th:href="@{'/authors/deleteAuthor/' + ${author.id}}">Delete</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+         </div>
+
+    </th:block>
 
 </body>
 </html>

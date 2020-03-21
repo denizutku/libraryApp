@@ -37,11 +37,11 @@ public class BookController {
     }
 
     @GetMapping("/newbook")
-    public String newBook(Model model, @RequestParam Long authorId) {
+    public String newBook(Model model) {
         Book newBook = new Book();
         model.addAttribute("newBook", newBook);
-        Optional<Author> aut = authorRepository.findById(authorId);
-
+        List<Author> authorList = (List<Author>) authorRepository.findAll();
+        model.addAttribute("author", authorList);
         return "newbook";
     }
 
