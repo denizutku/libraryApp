@@ -14,6 +14,8 @@ public class Book {
 
     private String category;
 
+    private boolean available;
+
     @ManyToOne
     private Author author;
 
@@ -39,6 +41,14 @@ public class Book {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public Author getAuthor() {

@@ -55,6 +55,7 @@ public class BookController {
     public String deleteBook(@PathVariable(name = "id") Long id) {
         bookRepository.deleteById(id);
         return "redirect:/books;";
+
     }
 
 

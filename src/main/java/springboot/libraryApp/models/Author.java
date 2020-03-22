@@ -17,6 +17,8 @@ public class Author {
 
     private String genre;
 
+    private String about;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private List<Book> books = new ArrayList<>();
@@ -43,6 +45,14 @@ public class Author {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public Author() {
