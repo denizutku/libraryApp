@@ -21,13 +21,8 @@
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
                             <h2 th:text="${bookDetails.name}"></h2>
-                            <p><strong>Genre: </strong> <span th:text="${bookDetails.genre}"></span> </p>
-                            <p><strong>About: </strong> <span th:text="${bookDetails.about}"></span> </p>
-                            <p><strong>Books: </strong>
-                                <th:block th:each="book: ${bookDetails.books}">
-                                    <a th:href="@{'/books/' + ${book.id}}"><span th:text="${book.name}" class="tags"></span></a>
-                                </th:block>
-                            </p>
+                            <p><strong>Genre: </strong> <span th:text="${bookDetails.category}"></span> </p>
+                            <p><strong>About: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
