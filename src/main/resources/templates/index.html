@@ -18,11 +18,11 @@
             <th>4</th>
         </tr>
 
-        <tr th:each="book: ${books}">
-            <td th:text="${book.id}"></td>
-            <td th:text="${book.name}"></td>
-            <td th:text="${book.category}"></td>
-            <td th:text="${book.author.name}"></td>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.role.type}"></td>
         </tr>
     </table>
 
@@ -34,13 +34,12 @@
             <th>4</th>
         </tr>
 
-        <tr th:each="author: ${authors}" >
-            <td th:text="${author.id}"></td>
-            <td th:text="${author.name}"></td>
-            <td th:text="${author.genre}"></td>
+        <tr th:each="role: ${roles}" >
+            <td th:text="${role.id}"></td>
+            <td th:text="${role.type}"></td>
             <td>
-                <th:block th:each="book: ${author.books}">
-                    <span th:text="${book.name}"></span>
+                <th:block th:each="user: ${role.users}">
+                    <span th:text="${user.name}"></span>
                 </th:block>
             </td>
         </tr>
