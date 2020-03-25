@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layouts/layout}"
 >
 <head>
@@ -9,20 +9,23 @@
 <body>
 <th:block layout:fragment="content">
 
-
     <table class="table">
         <tr>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Role</th>
         </tr>
 
         <tr th:each="user: ${users}">
             <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
             <td th:text="${user.email}"></td>
-            <td th:text="${user.role.type}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.roles.role}"></td>
         </tr>
     </table>
 
@@ -30,18 +33,10 @@
         <tr>
             <th>1</th>
             <th>2</th>
-            <th>3</th>
-            <th>4</th>
         </tr>
-
         <tr th:each="role: ${roles}" >
             <td th:text="${role.id}"></td>
-            <td th:text="${role.type}"></td>
-            <td>
-                <th:block th:each="user: ${role.users}">
-                    <span th:text="${user.name}"></span>
-                </th:block>
-            </td>
+            <td th:text="${role.role}"></td>
         </tr>
     </table>
 

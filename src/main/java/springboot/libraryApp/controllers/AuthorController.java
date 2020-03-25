@@ -51,6 +51,6 @@ public class AuthorController {
     @GetMapping("/deleteAuthor/{id}")
     public String deleteAuthor(@PathVariable(name = "id") Long id) {
         authorRepository.deleteById(id);
-        return "redirect:/authors;";
+        return "redirect:/authors";
     }
 }

@@ -7,24 +7,38 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import springboot.libraryApp.Repositories.RoleRepository;
+import springboot.libraryApp.Repositories.UserRepository;
 import springboot.libraryApp.Security.UserService;
+import springboot.libraryApp.models.Role;
 import springboot.libraryApp.models.User;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 class HomeController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    HomeController(UserService userService) {
+    HomeController(UserService userService, UserRepository userRepository, RoleRepository roleRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
-    @GetMapping(value={"/", "/login"})
+    @GetMapping(value={"/"})
+    public String home(Model model){
+        List<User> users = userRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
+        model.addAttribute("roles", roles);
+        model.addAttribute("users", users);
+        return "index";
+    }
+
+    @GetMapping(value={"/login"})
     public String login(){
         return "login";
     }
@@ -54,6 +68,32 @@ class HomeController {
         }
         return "login";
     }
+
+    @GetMapping(value="/admin/registration")
+    public String adminRegistration(Model model){
+        User admin = new User();
+        model.addAttribute("admin",admin);
+        return "adminRegistration";
+    }
+
+    @PostMapping(value = "/admin/registration")
+    public String createNewAdmin(@Valid User admin, BindingResult bindingResult, Model model) {
+        User userExists = userService.findUserByEmail(admin.getEmail());
+        if (userExists != null) {
+            bindingResult
+                    .rejectValue("email", "error.admin",
+                            "There is already a admin registered with the email provided");
+        }
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        } else {
+            userService.saveUser(admin);
+            model.addAttribute("successMessage", "Admin has been registered successfully");
+            model.addAttribute("admin", new User());
+        }
+        return "login";
+    }
+
 
     @GetMapping(value="/admin/adminHome")
     public String adminHome(Model model){

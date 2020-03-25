@@ -1,15 +1,18 @@
 package springboot.libraryApp.controllers;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import springboot.libraryApp.Repositories.AuthorRepository;
 import springboot.libraryApp.Repositories.BookRepository;
+import springboot.libraryApp.Security.UserService;
 import springboot.libraryApp.models.Author;
 import springboot.libraryApp.models.Book;
+import springboot.libraryApp.models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/books")
@@ -17,10 +20,12 @@ public class BookController {
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
+    private final UserService userService;
 
-    public BookController(BookRepository bookRepository, AuthorRepository authorRepository) {
+    public BookController(BookRepository bookRepository, AuthorRepository authorRepository, UserService userService) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
+        this.userService = userService;
     }
 
     @GetMapping()
@@ -54,8 +59,16 @@ public class BookController {
     @GetMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable(name = "id") Long id) {
         bookRepository.deleteById(id);
-        return "redirect:/books;";
+        return "redirect:/books";
+    }
 
+    @PostMapping("/takeBook")
+    public String takeBook(@ModelAttribute("book") Book book) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        book.setUser(user);
+        book.setAvailable(false);
+        return "redirect:/books";
     }
 
 

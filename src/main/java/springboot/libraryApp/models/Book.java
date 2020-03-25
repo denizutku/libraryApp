@@ -19,6 +19,9 @@ public class Book {
     @ManyToOne
     private Author author;
 
+    @ManyToOne
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -59,8 +62,16 @@ public class Book {
         this.author = author;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Book() {
+        this.available = true;
     }
 
     public Book(String name, String category, Author author) {

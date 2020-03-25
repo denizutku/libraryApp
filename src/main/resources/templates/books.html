@@ -20,6 +20,7 @@
                             <th>Category</th>
                             <th>Author's Name</th>
                             <th>Actions</th>
+                            <th>Avaiable</th>
                         </tr>
 
                         <tr th:each="book: ${listAllBooks}">
@@ -30,6 +31,7 @@
                             <td>
                                 <a th:href="@{'/books/' + ${book.id}}">Details</a> <a th:href="@{'/books/deleteBook/' + ${book.id}}">Delete</a>
                             </td>
+                            <td th:text="${book.available}"></td>
                         </tr>
                     </table>
                 </div>

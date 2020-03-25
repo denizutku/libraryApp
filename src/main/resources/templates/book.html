@@ -23,6 +23,11 @@
                             <h2 th:text="${bookDetails.name}"></h2>
                             <p><strong>Genre: </strong> <span th:text="${bookDetails.category}"></span> </p>
                             <p><strong>About: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
+                            <p><strong>About: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
+                            <form class="text-center border border-light p-5" th:action="@{/books/takeBook}" method="post" th:object="${bookDetails}">
+                                <button class="btn btn-info btn-block" type="submit">take</button>
+                            </form>
+
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
