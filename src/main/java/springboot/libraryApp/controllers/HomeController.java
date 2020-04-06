@@ -26,6 +26,7 @@ class HomeController {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
+
     HomeController(UserService userService, UserRepository userRepository, RoleRepository roleRepository) {
         this.userService = userService;
         this.userRepository = userRepository;

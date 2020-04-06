@@ -21,13 +21,11 @@
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
                             <h2 th:text="${bookDetails.name}"></h2>
-                            <p><strong>Genre: </strong> <span th:text="${bookDetails.category}"></span> </p>
-                            <p><strong>About: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
-                            <p><strong>About: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
+                            <p><strong>Category: </strong> <span th:text="${bookDetails.category}"></span> </p>
+                            <p><strong>Author: </strong> <span th:text="${bookDetails.author.name}" class="tags"></span> </p>
+                            <p><strong>Availability: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
                             <p><strong>About: </strong> <span th:text="${bookDetails.user.name}" class="tags"></span> </p>
-                            <form class="text-center border border-light p-5" th:action="@{/books/takeBook}" method="post" th:object="${bookDetails}">
-                                <button class="btn btn-info btn-block" type="submit">take</button>
-                            </form>
+                            <a th:href="@{'/books/takeBook/' + ${bookDetails.id}}">Take</a>
 
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">

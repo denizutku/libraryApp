@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import springboot.libraryApp.Repositories.AuthorRepository;
 import springboot.libraryApp.Repositories.BookRepository;
+import springboot.libraryApp.Security.BookService;
 import springboot.libraryApp.Security.UserService;
 import springboot.libraryApp.models.Author;
 import springboot.libraryApp.models.Book;
@@ -21,11 +22,13 @@ public class BookController {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final UserService userService;
+    private final BookService bookService;
 
-    public BookController(BookRepository bookRepository, AuthorRepository authorRepository, UserService userService) {
+    public BookController(BookRepository bookRepository, AuthorRepository authorRepository, UserService userService, BookService bookService) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.userService = userService;
+        this.bookService = bookService;
     }
 
     @GetMapping()
@@ -62,35 +65,12 @@ public class BookController {
         return "redirect:/books";
     }
 
-//    @PostMapping("/takeBook/{id}")
-//    public String takeBook(@PathVariable(name = "id") Long id) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//       User user = userService.findUserByEmail(auth.getName());
-//        bookService.takeBook(id,user);
-//        return "redirect:/books";
-//    }
-
-//    @GetMapping("/takeBook/{id}")
-//    public String takeBook(@PathVariable(name = "id") Long id) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.findUserByEmail(auth.getName());
-//        bookRepository.
-//
-//        bookRepository.deleteById(id);
-//        return "redirect:/books";
-//    }
-
-//
-//
-//
-//
-//    @PostMapping("/takeBook")
-//    public String takeBook(@ModelAttribute("book") Book book) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.findUserByEmail(auth.getName());
-//        book.setUser(user);
-//        book.setAvailable(false);
-//        return "redirect:/books";
-//    }
+    @GetMapping("/takeBook/{id}")
+    public String takeBook(@PathVariable(name = "id") Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        bookService.takeBook(id,user);
+        return "redirect:/books";
+    }
 
 }
