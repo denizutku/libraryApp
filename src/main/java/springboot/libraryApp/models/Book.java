@@ -78,5 +78,6 @@ public class Book {
         this.name = name;
         this.category = category;
         this.author = author;
+        this.available = true;
     }
 }

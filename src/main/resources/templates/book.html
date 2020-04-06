@@ -24,6 +24,7 @@
                             <p><strong>Genre: </strong> <span th:text="${bookDetails.category}"></span> </p>
                             <p><strong>About: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
                             <p><strong>About: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
+                            <p><strong>About: </strong> <span th:text="${bookDetails.user.name}" class="tags"></span> </p>
                             <form class="text-center border border-light p-5" th:action="@{/books/takeBook}" method="post" th:object="${bookDetails}">
                                 <button class="btn btn-info btn-block" type="submit">take</button>
                             </form>

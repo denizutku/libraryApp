@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import springboot.libraryApp.Repositories.RoleRepository;
 import springboot.libraryApp.Repositories.UserRepository;
+import springboot.libraryApp.models.Book;
 import springboot.libraryApp.models.Role;
 import springboot.libraryApp.models.User;
 
@@ -38,4 +39,5 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+
 }

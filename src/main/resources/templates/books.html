@@ -29,7 +29,7 @@
                             <td th:text="${book.category}"></td>
                             <td th:text="${book.author.name}"></td>
                             <td>
-                                <a th:href="@{'/books/' + ${book.id}}">Details</a> <a th:href="@{'/books/deleteBook/' + ${book.id}}">Delete</a>
+                                <a th:href="@{'/books/' + ${book.id}}">Details</a> <a th:href="@{'/books/deleteBook/' + ${book.id}}">Delete</a> <a th:href="@{'/books/takeBook/' + ${book.id}}">Take</a>
                             </td>
                             <td th:text="${book.available}"></td>
                         </tr>

@@ -50,7 +50,7 @@ public class User {
     private Set<Role> roles;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "USER_ID")
     private List<Book> books = new ArrayList<>();
 
     public Long getId() {

@@ -62,16 +62,35 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @PostMapping("/takeBook")
-    public String takeBook(@ModelAttribute("book") Book book) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        book.setUser(user);
-        book.setAvailable(false);
-        return "redirect:/books";
-    }
+//    @PostMapping("/takeBook/{id}")
+//    public String takeBook(@PathVariable(name = "id") Long id) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//       User user = userService.findUserByEmail(auth.getName());
+//        bookService.takeBook(id,user);
+//        return "redirect:/books";
+//    }
 
+//    @GetMapping("/takeBook/{id}")
+//    public String takeBook(@PathVariable(name = "id") Long id) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.findUserByEmail(auth.getName());
+//        bookRepository.
+//
+//        bookRepository.deleteById(id);
+//        return "redirect:/books";
+//    }
 
-
+//
+//
+//
+//
+//    @PostMapping("/takeBook")
+//    public String takeBook(@ModelAttribute("book") Book book) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.findUserByEmail(auth.getName());
+//        book.setUser(user);
+//        book.setAvailable(false);
+//        return "redirect:/books";
+//    }
 
 }
