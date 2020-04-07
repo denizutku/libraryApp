@@ -20,4 +20,11 @@ public class BookServiceImpl implements BookService {
         bookRepository.findById(id).get().setUser(user);
         return bookRepository.save(bookRepository.findById(id).get());
     }
+
+    @Override
+    public Book returnBook(Long id, User user) {
+        bookRepository.findById(id).get().setAvailable(true);
+        bookRepository.findById(id).get().setUser(null);
+        return bookRepository.save(bookRepository.findById(id).get());
+    }
 }

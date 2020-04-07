@@ -24,13 +24,15 @@
                             <p><strong>Category: </strong> <span th:text="${bookDetails.category}"></span> </p>
                             <p><strong>Author: </strong> <span th:text="${bookDetails.author.name}" class="tags"></span> </p>
                             <p><strong>Availability: </strong> <span th:text="${bookDetails.available}" class="tags"></span> </p>
-                            <p><strong>About: </strong> <span th:text="${bookDetails.user.name}" class="tags"></span> </p>
-                            <a th:href="@{'/books/takeBook/' + ${bookDetails.id}}">Take</a>
+                            <span th:if="${bookDetails.user == null}"><a th:href="@{'/books/takeBook/' + ${bookDetails.id}}">Take</a></span>
+                            <span th:if="${bookDetails.user == user}"><a th:href="@{'/books/returnBook/' + ${bookDetails.id}}">Return</a></span>
+
+                            <!--                            <p><strong>Holder: </strong> <span th:text="${bookDetails?.user?.name}" class="tags"></span> </p>-->
 
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+                                <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-u    ser-icon-profile.png" alt="" class="img-circle img-responsive">
                                 <figcaption class="ratings">
                                     <p>Ratings
                                         <a href="#">

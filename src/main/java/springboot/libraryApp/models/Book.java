@@ -84,10 +84,11 @@ public class Book {
         this.available = true;
     }
 
-    public Book(String name, String category, Author author) {
+    public Book(Long id, String name, String category, Author author) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.author = author;
-        this.available = true;
+        this.available = true;;
     }
 }

@@ -58,6 +58,13 @@ public class Author {
     public Author() {
     }
 
+    public Author(Long id, String name, String genre, String about) {
+        this.id=id;
+        this.name=name;
+        this.genre=genre;
+        this.about=about;
+    }
+
     public List<Book> getBooks() {
         return books;
     }
