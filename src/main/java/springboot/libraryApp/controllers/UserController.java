@@ -26,6 +26,6 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         model.addAttribute("userDetails", userRepository.findById(user.getId()).get());
-        return "/profile";
+        return "profile";
     }
 }
