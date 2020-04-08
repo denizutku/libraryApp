@@ -33,7 +33,7 @@
                                 </th:block>
                             </td>
                             <td>
-                                <a th:href="@{'/authors/' + ${author.id}}">Details</a> <a th:href="@{'/authors/deleteAuthor/' + ${author.id}}">Delete</a>
+                                <a th:href="@{'/authors/' + ${author.id}}">Details</a> <a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/authors/deleteAuthor/' + ${author.id}}">Delete</a>
                             </td>
                         </tr>
                     </table>

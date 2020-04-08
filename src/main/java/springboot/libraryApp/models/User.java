@@ -117,4 +117,15 @@ public class User {
         this.books = books;
     }
 
+    public User(Long id,String email,String password,String name,String lastname,int active,Role role) {
+    this.id=id;
+    this.email=email;
+    this.password=password;
+    this.name=name;
+    this.lastName=lastname;
+    this.active=active;
+    this.setRoles(new HashSet<Role>(Arrays.asList(role)));
+    this.books = null;
+    }
+
 }
