@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "authors")
+@Table(name = "AUTHOR")
 public class Author {
 
     @Id
@@ -20,7 +20,7 @@ public class Author {
     private String about;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "AUTHOR_ID")
     private List<Book> books = new ArrayList<>();
 
     public Long getId() {

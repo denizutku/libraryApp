@@ -3,11 +3,12 @@ package springboot.libraryApp.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "books")
+@Table(name = "BOOK")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BOOK_ID")
     private Long id;
 
     private String name;

@@ -50,8 +50,8 @@ public class User {
     private Set<Role> roles;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
-    private List<Book> books = new ArrayList<>();
+    @JoinColumn(name = "USER_USER_ID")
+    private Set<Book> books;
 
     public Long getId() {
         return id;
@@ -109,11 +109,11 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Set<Book> books) {
         this.books = books;
     }
 
