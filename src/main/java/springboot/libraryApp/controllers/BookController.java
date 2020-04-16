@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import springboot.libraryApp.GoogleAPI.GoogleBookService;
 import springboot.libraryApp.Repositories.AuthorRepository;
 import springboot.libraryApp.Repositories.BookRepository;
 import springboot.libraryApp.Repositories.UserRepository;
@@ -25,13 +26,15 @@ public class BookController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final BookService bookService;
+    private final GoogleBookService googleBookService;
 
-    public BookController(BookRepository bookRepository, AuthorRepository authorRepository, UserService userService, UserRepository userRepository, BookService bookService) {
+    public BookController(BookRepository bookRepository, AuthorRepository authorRepository, UserService userService, UserRepository userRepository, BookService bookService, GoogleBookService googleBookService) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.userService = userService;
         this.userRepository = userRepository;
         this.bookService = bookService;
+        this.googleBookService = googleBookService;
     }
 
     @GetMapping()
@@ -57,6 +60,16 @@ public class BookController {
         List<Author> authorList = (List<Author>) authorRepository.findAll();
         model.addAttribute("author", authorList);
         return "newbook";
+    }
+
+    @GetMapping("/newgooglebook")
+    public String newGoogleBook(Model model) {
+        Book newBook = googleBookService.getGoogleBook("isbn:0735619670");
+        Author author = googleBookService.getGoogleBookAuthor("isbn:0735619670");
+        authorRepository.save(author);
+        newBook.setAuthor(author);
+        bookRepository.save(newBook);
+        return "newgooglebook";
     }
 
     @PostMapping("/saveBook")
