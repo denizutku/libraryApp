@@ -19,7 +19,9 @@
                         <input type="text" class="form-control mb-4" placeholder="Name" th:field="*{name}">
                         <input type="text" class="form-control mb-4" placeholder="Category" th:field="*{category}">
                         <input type="text" class="form-control mb-4" placeholder="About" th:field="*{about}">
-                        <input type="text" class="form-control mb-4" placeholder="Thumbnail Ling" th:field="*{imageLink}">
+                        <input type="text" class="form-control mb-4" placeholder="Thumbnail Link" th:field="*{imageLink}">
+                        <input type="text" class="form-control mb-4" placeholder="Published Date" th:field="*{publishedDate}">
+                        <input type="text" class="form-control mb-4" placeholder="Pages" th:field="*{pageCount}">
                         <label>Select Author</label>
                         <select class="browser-default custom-select mb-4" th:field="*{author}">
                             <option th:each="author : ${author}"

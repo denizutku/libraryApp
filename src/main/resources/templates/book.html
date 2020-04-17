@@ -20,7 +20,7 @@
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
                             <h2 th:text="${bookDetails.name}"></h2>
-                            <img th:src="${bookDetails.imageLink}">
+                            <span class="border border-dark"><img th:src="${bookDetails.imageLink}"></span>
                             <p><strong>Author: </strong> <span th:text="${bookDetails.author.name}"></span> </p>
                             <p><strong>Category: </strong> <span th:text="${bookDetails.category}" ></span> </p>
                             <p><strong>About: </strong> <span th:text="${bookDetails.about}"></span> </p>
