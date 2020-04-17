@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}">
+<head>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+                <form class="text-center border border-light p-5" th:action="@{/books/saveBookWithISBN}" method="post">
+                    <p class="h4 mb-4">Create a new book with ISBN</p>
+                    <input type="text" class="form-control mb-4" placeholder="ISBN" th:name="isbn">
+                    <button class="btn btn-info btn-block" type="submit">Create</button>
+                </form>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+</body>
+</html>

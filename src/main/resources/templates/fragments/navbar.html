@@ -41,6 +41,7 @@
                 <a class="p-2 text-muted" href="/books">Books</a>
                 <a class="p-2 text-muted" href="/authors">Authors</a>
                 <a sec:authorize="hasAuthority('ADMIN')" class="p-2 text-muted" href="/books/newbook">New Book</a>
+                <a sec:authorize="hasAuthority('ADMIN')" class="p-2 text-muted" href="/books/newBookWithISBN">New Book(ISBN)</a>
                 <a sec:authorize="hasAuthority('ADMIN')" class="p-2 text-muted" href="/authors/newauthor">New Author</a>
                 <a class="p-2 text-muted" href="#">Options</a>
             </nav>

@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import springboot.libraryApp.Repositories.AuthorRepository;
 import springboot.libraryApp.Repositories.BookRepository;
 import springboot.libraryApp.models.Author;
 import springboot.libraryApp.models.Book;
@@ -17,14 +18,12 @@ import java.io.IOException;
 public class GoogleBookServiceImpl implements GoogleBookService {
 
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
 
-    public GoogleBookServiceImpl(BookRepository bookRepository) {
+    public GoogleBookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
     }
-
-    Book newBook = new Book();
-    Author newAuthor = new Author();
-    GoogleBook newGoogleBook = new GoogleBook();
 
     OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     Retrofit retrofit = new Retrofit.Builder()
@@ -38,24 +37,10 @@ public class GoogleBookServiceImpl implements GoogleBookService {
     @Override
     public Book getGoogleBook(String isbn) {
 
-        Call<GoogleBook> callSync = googleBookApi.getGoogleBook(isbn);
-        try {
-            Response<GoogleBook> response = callSync.execute();
-            newGoogleBook = response.body();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String title = newGoogleBook.getItems().get(0).getVolumeInfo().getTitle();
-        String about = newGoogleBook.getItems().get(0).getVolumeInfo().getDescription();
-        String category = newGoogleBook.getItems().get(0).getVolumeInfo().getCategories().get(0);
-        newBook.setName(title);
-        newBook.setAbout(about);
-        newBook.setCategory(category);
-        return newBook;
-    }
+        Book newBook = new Book();
+        Author newAuthor = new Author();
+        GoogleBook newGoogleBook = new GoogleBook();
 
-    @Override
-    public Author getGoogleBookAuthor(String isbn) {
         Call<GoogleBook> callSync = googleBookApi.getGoogleBook(isbn);
         try {
             Response<GoogleBook> response = callSync.execute();
@@ -63,10 +48,29 @@ public class GoogleBookServiceImpl implements GoogleBookService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         String authorName = newGoogleBook.getItems().get(0).getVolumeInfo().getAuthors().get(0);
         newAuthor.setName(authorName);
         newAuthor.setGenre("sth");
         newAuthor.setAbout("sth");
-        return newAuthor;
+        authorRepository.save(newAuthor);
+
+        String title = newGoogleBook.getItems().get(0).getVolumeInfo().getTitle();
+        String about = newGoogleBook.getItems().get(0).getVolumeInfo().getDescription();
+        String category = newGoogleBook.getItems().get(0).getVolumeInfo().getCategories().get(0);
+        String imageLink = newGoogleBook.getItems().get(0).getVolumeInfo().getImageLinks().getThumbnail();
+        String publishedDate = newGoogleBook.getItems().get(0).getVolumeInfo().getPublishedDate();
+        int pageCount = newGoogleBook.getItems().get(0).getVolumeInfo().getPageCount();
+        int rating = newGoogleBook.getItems().get(0).getVolumeInfo().getAverageRating();
+        newBook.setName(title);
+        newBook.setAbout(about);
+        newBook.setCategory(category);
+        newBook.setImageLink(imageLink);
+        newBook.setAuthor(newAuthor);
+        newBook.setPublishedDate(publishedDate);
+        newBook.setPageCount(pageCount);
+        newBook.setRating(rating);
+        return newBook;
     }
+
 }

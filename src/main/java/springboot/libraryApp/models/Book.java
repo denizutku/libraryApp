@@ -19,11 +19,19 @@ public class Book {
 
     private boolean available;
 
+    private String imageLink;
+
     @ManyToOne
     private Author author;
 
     @ManyToOne
     private User user;
+
+    private String publishedDate;
+
+    private int pageCount;
+
+    private int rating;
 
     public Long getId() {
         return id;
@@ -65,6 +73,14 @@ public class Book {
         this.available = available;
     }
 
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     public Author getAuthor() {
         return author;
     }
@@ -79,6 +95,30 @@ public class Book {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public Book() {

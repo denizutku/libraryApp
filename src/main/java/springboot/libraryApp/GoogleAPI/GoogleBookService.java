@@ -27,5 +27,4 @@ public interface GoogleBookService {
 //    }
 
     public Book getGoogleBook(String isbn);
-    public Author getGoogleBookAuthor(String isbn);
 }

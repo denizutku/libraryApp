@@ -18,6 +18,8 @@
                         <p class="h4 mb-4">Create a new book</p>
                         <input type="text" class="form-control mb-4" placeholder="Name" th:field="*{name}">
                         <input type="text" class="form-control mb-4" placeholder="Category" th:field="*{category}">
+                        <input type="text" class="form-control mb-4" placeholder="About" th:field="*{about}">
+                        <input type="text" class="form-control mb-4" placeholder="Thumbnail Ling" th:field="*{imageLink}">
                         <label>Select Author</label>
                         <select class="browser-default custom-select mb-4" th:field="*{author}">
                             <option th:each="author : ${author}"

@@ -62,15 +62,19 @@ public class BookController {
         return "newbook";
     }
 
-    @GetMapping("/newgooglebook")
-    public String newGoogleBook(Model model) {
-        Book newBook = googleBookService.getGoogleBook("isbn:0735619670");
-        Author author = googleBookService.getGoogleBookAuthor("isbn:0735619670");
-        authorRepository.save(author);
-        newBook.setAuthor(author);
-        bookRepository.save(newBook);
-        return "newgooglebook";
+    @GetMapping("/newBookWithISBN")
+    public String newBookWithISBN() {
+        return "newbookisbn";
     }
+
+    @PostMapping("/saveBookWithISBN")
+    public String saveBookWithISBN(@RequestParam(value = "isbn") String isbn) {
+        String isbnTotal = "isbn:" + isbn;
+        Book newBook = googleBookService.getGoogleBook(isbnTotal);
+        bookRepository.save(newBook);
+        return "redirect:/books";
+    }
+
 
     @PostMapping("/saveBook")
     public String saveBook(@ModelAttribute("book") Book book) {
