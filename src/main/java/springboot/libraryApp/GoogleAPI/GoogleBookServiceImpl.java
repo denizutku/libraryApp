@@ -61,7 +61,7 @@ public class GoogleBookServiceImpl implements GoogleBookService {
         String imageLink = newGoogleBook.getItems().get(0).getVolumeInfo().getImageLinks().getThumbnail();
         String publishedDate = newGoogleBook.getItems().get(0).getVolumeInfo().getPublishedDate();
         int pageCount = newGoogleBook.getItems().get(0).getVolumeInfo().getPageCount();
-        int rating = newGoogleBook.getItems().get(0).getVolumeInfo().getAverageRating();
+        float rating = newGoogleBook.getItems().get(0).getVolumeInfo().getAverageRating();
         newBook.setName(title);
         newBook.setAbout(about);
         newBook.setCategory(category);

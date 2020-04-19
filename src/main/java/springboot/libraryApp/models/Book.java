@@ -31,7 +31,7 @@ public class Book {
 
     private int pageCount;
 
-    private int rating;
+    private float rating;
 
     public Long getId() {
         return id;
@@ -113,11 +113,11 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

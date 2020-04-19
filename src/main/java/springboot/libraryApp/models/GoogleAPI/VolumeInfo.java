@@ -69,7 +69,7 @@ public class VolumeInfo {
     private List<String> categories = null;
     @SerializedName("averageRating")
     @Expose
-    private int averageRating;
+    private float averageRating;
     @SerializedName("ratingsCount")
     @Expose
     private int ratingsCount;
@@ -234,11 +234,11 @@ public class VolumeInfo {
         this.categories = categories;
     }
 
-    public int getAverageRating() {
+    public float getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(int averageRating) {
+    public void setAverageRating(float averageRating) {
         this.averageRating = averageRating;
     }
 
